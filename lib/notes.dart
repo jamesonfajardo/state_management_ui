@@ -28,6 +28,11 @@
 //  • Bloc      - need to familiarize with syntax specific to Bloc
 //  • GetX      - need to familiarize with syntax specific to GetX
 
+// Setting State
+//  • Provider  - needs to invoke notifyListeners() to update state
+//  • Bloc      - needs to call the .emit(newValue) method to update state
+//  • GetX      - directly assign a new value to model property, no methods need to invoke.  onChanged(newValue) => model.property.value = newValue;
+
 // ! ====================== Implementation ======================
 
 //* Provider
