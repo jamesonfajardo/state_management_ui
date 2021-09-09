@@ -32,6 +32,8 @@
 
 //* Provider
 
+
+
 //* ======================
 //* Step 1: create a model
 //* ======================
@@ -57,6 +59,8 @@ class ProviderData2 extends ChangeNotifier {
     notifyListeners(); // this will trigger a rebuild like setState
   }
 }
+
+
 
 //* =====================================
 //* Step 2: set the provider in main.dart
@@ -93,6 +97,8 @@ class ProviderApp extends StatelessWidget {
   }
 }
 
+
+
 //* =============================================
 //* Step 3: listen to provider data value updates
 //* =============================================
@@ -100,6 +106,8 @@ class ProviderApp extends StatelessWidget {
 Text(Provider.of<ProviderData>(context).string),
 // provider 2
 Text(Provider.of<ProviderData2>(context).string),
+
+
 
 //* ===================================================================
 //* Step 4: event emitter to update provider data value
@@ -121,6 +129,8 @@ TextField(
 
 //* Bloc
 
+
+
 //* ======================
 //* Step 1: create a model
 //* ======================
@@ -138,6 +148,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class BlocData2 extends Cubit<String> {
   BlocData2() : super('Bloc 2 Data');
 }
+
 
 
 //* =================================
@@ -169,6 +180,8 @@ class BlocDemo extends StatelessWidget {
   }
 }
 
+
+
 //* ==============================
 //* Step 3: listening to bloc data
 //* ==============================
@@ -181,6 +194,8 @@ BlocBuilder<BlocData, String>(builder: (context, state) {
 BlocBuilder<BlocData2, String>(builder: (context, state) {
   return Text('$state');
 })
+
+
 
 //* ==========================
 //* Step 4: updating bloc data
