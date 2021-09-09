@@ -203,16 +203,14 @@ BlocBuilder<BlocData2, String>(builder: (context, state) {
 
 // .emit(newValue) - is the one responsible for updating the data
 
-FractionallySizedBox(
-  child: TextField(
-    onChanged: (newValue) {
-      // model 1
-      BlocProvider.of<BlocData>(context).emit(newValue);
-      // model 2
-      BlocProvider.of<BlocData2>(context).emit(newValue);
-    },
-  ),
-)
+child: TextField(
+  onChanged: (newValue) {
+    // model 1
+    BlocProvider.of<BlocData>(context).emit(newValue);
+    // model 2
+    BlocProvider.of<BlocData2>(context).emit(newValue);
+  },
+),
 
 
 
@@ -221,3 +219,88 @@ FractionallySizedBox(
 
 
 // GetX
+
+
+
+//* ======================
+//* Step 1: create a model
+//* ======================
+
+import 'package:get/get.dart';
+
+class Getx1 extends GetxController {
+  var string = 'GetX 1 Data'.obs; // use var
+}
+
+
+Widget build(BuildContext context) {
+  // always use .put() at the top most level of the widget tree
+  // so the widgets under it can access the model instance via .find
+
+  // only define .put or .find, do not define both on the same page
+
+  // .put - used for initializing the model instance.
+  // having multiple .put means multiple instance of the same model
+  Getx1 getx1 = Get.put(Getx1()); 
+
+  // .find - for reusing the initialized model anywhere down the widget tree
+  // this won't create a new instance but reuse the instance from .put
+  Getx1 getx1 = Get.find<Getx1>(); 
+
+  return Scaffold(
+    // and so on..
+  );
+}
+
+
+//* =================================
+//* Step 2: set getx in main.dart
+//* =================================
+
+void main() => runApp(StateManagementDemo());
+
+class StateManagementDemo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return GetMaterialApp( // this
+      routes: {
+        '/page1': (context) => Page1(),
+        '/page2': (context) => Page2(),
+        '/page3': (context) => Page3(),
+      },
+      initialRoute: '/page1',
+    );
+  }
+}
+
+
+
+//* ==============================
+//* Step 3: listening to GetX data
+//* ==============================
+
+// Getx1 getx1 = Get.put(Getx1());  // define the model via .put or .find
+Getx1 getx1 = Get.find<Getx1>();    // define the model via .put or .find
+
+Obx(() => Text('${getx1.string}')),
+
+
+
+//* ==========================
+//* Step 4: updating GetX data
+//* ==========================
+
+// Getx1 getx1 = Get.put(Getx1());  // define the model via .put or .find
+Getx1 getx1 = Get.find<Getx1>();    // define the model via .put or .find
+
+child: TextField(
+  onChanged: (newValue) {
+    getx1.string.value = newValue; // change the property value directly, no need to invoke any methods
+  },
+),
+
+
+// Additional GetX Syntax
+
+// Get.toNamed('/page2');   // navigator.pushNamed
+// Get.back();              // navigator.pop
