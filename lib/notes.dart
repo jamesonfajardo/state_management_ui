@@ -6,17 +6,17 @@
 // Ease of use
 //  • Provider  - easy to use, you only need to know 4 concepts: model, implementation, listen state, update state
 //  • Bloc      - challenging to use because of confusing concepts and terms (Cubit, .emit, Bloc<event, dataType>, etc..) + Bloc specific syntax
-//  • GetX      - easy to use but you need to remember the syntac specific to GetX.
+//  • GetX      - easy to use but you need to remember the syntax specific to GetX.
 
 // Flexibility
 //  • Provider  - flexible because the data that you will be working on is raw data so you can easily use it for conditional statements
 //  • Bloc      - not flexible because the data/state is bound to a widget, applying conditional statement is possible but at the cost of bloating the BlocBuilder widget
-//  • GetX      - not flexible because the data/state is bound to a widget, applying conditional statement is possible but at the cost of bloating the widget
+//  • GetX      - flexible because the data can be either raw data or bound to a widget via Obx
 
 // Utilities
 //  • Provider  - purely state management
 //  • Bloc      - purely state management
-//  • GetX      - GetX package includes utilities like validator, snackbar, dialogs which is a waste if won't be used
+//  • GetX      - GetX package includes utilities like routers, validator, snackbar, dialogs
 
 // Model
 //  • Provider  - 1 model can hold multiple data/state
@@ -32,6 +32,26 @@
 //  • Provider  - needs to invoke notifyListeners() to update state
 //  • Bloc      - needs to call the .emit(newValue) method to update state
 //  • GetX      - directly assign a new value to model property, no methods need to invoke.  onChanged(newValue) => model.property.value = newValue;
+
+// Learning Duration
+//  • Provider  - 5-10 minutes
+//  • Bloc      - could take days and re-learning just to grasp it's concept
+//  • GetX      - around 1 hour
+
+// Final Comments
+//  • Provider  - straightforward usage and does what a state management should do
+//              - if you don't need the utilities from getx then provider is the best choice
+
+//  • Bloc      - pretty complicated for a state management package plus the breaking changes on v2.2.0 (null safety)
+//                the choices are only between provider and getx because both are easy to comprehend and you can start
+//                with the development right away instead of learning bloc for days/weeks
+
+//  • GetX      - easy to use like provider and probably more powerful than provider and bloc,
+//                but you need to take into consideration the syntax that you need to familiarize with
+//                and you might depend on this package too much to the point that you might forget
+//                how to use native flutter navigators, snackbars, dialogs, etc..
+//              - Instantiating models can be confusing at first because of the .put and .find methods
+//                but can be easily familiarized with.
 
 // ! ====================== Implementation ======================
 
