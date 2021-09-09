@@ -93,8 +93,16 @@ class ProviderApp extends StatelessWidget {
   }
 }
 
+//* =============================================
+//* Step 3: listen to provider data value updates
+//* =============================================
+// provider 1
+Text(Provider.of<ProviderData>(context).string),
+// provider 2
+Text(Provider.of<ProviderData2>(context).string),
+
 //* ===================================================================
-//* Step 3: event emitter to update provider data value
+//* Step 4: event emitter to update provider data value
 //* event emitters or conditional statements must include listen: false
 //* ===================================================================
 TextField(
@@ -106,13 +114,6 @@ TextField(
   },
 );
 
-//* =============================================
-//* Step 4: listen to provider data value updates
-//* =============================================
-// provider 1
-Text(Provider.of<ProviderData>(context).string),
-// provider 2
-Text(Provider.of<ProviderData2>(context).string),
 
 
 // ! ============================================
@@ -168,8 +169,21 @@ class BlocDemo extends StatelessWidget {
   }
 }
 
+//* ==============================
+//* Step 3: listening to bloc data
+//* ==============================
+
+// model 1
+BlocBuilder<BlocData, String>(builder: (context, state) {
+  return Text('$state');
+})
+// model 2
+BlocBuilder<BlocData2, String>(builder: (context, state) {
+  return Text('$state');
+})
+
 //* ==========================
-//* Step 3: updating bloc data
+//* Step 4: updating bloc data
 //* ==========================
 
 // .emit(newValue) - is the one responsible for updating the data
@@ -184,19 +198,6 @@ FractionallySizedBox(
     },
   ),
 )
-
-//* ==============================
-//* Step 4: listening to bloc data
-//* ==============================
-
-// model 1
-BlocBuilder<BlocData, String>(builder: (context, state) {
-  return Text('$state');
-})
-// model 2
-BlocBuilder<BlocData2, String>(builder: (context, state) {
-  return Text('$state');
-})
 
 
 
